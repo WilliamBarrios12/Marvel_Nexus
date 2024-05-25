@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="cardBackground">#B31B1818</color>
+        <!-- Color de fondo del TextInputLayout -->
+        <color name="textInputLayoutBackground">#FFFFFF</color>
+
+        <!-- Color del texto flotante del TextInputLayout -->
+        <color name="textInputLayoutFloatingTextColor">#000000</color>
+
+        <!-- Color de los bordes del TextInputLayout -->
+        <color name="textInputLayoutBoxStrokeColor">#FFFFFF</color>
+
+        <!-- Color del texto del TextInputLayout -->
+        <color name="textInputLayoutTextColor">#000000</color>
+</resources>
+
