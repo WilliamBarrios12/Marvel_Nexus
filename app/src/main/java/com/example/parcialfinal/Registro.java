@@ -8,8 +8,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Registro extends AppCompatActivity {
 
@@ -19,7 +28,7 @@ public class Registro extends AppCompatActivity {
     TextInputEditText regis_fecha;
     Button regis_trate;
     TextView iniciar;
-    FirebaseAuth mAuth;
+
 
 
     @Override
@@ -34,7 +43,6 @@ public class Registro extends AppCompatActivity {
         regis_trate = findViewById(R.id.regis_trate);
         iniciar = findViewById(R.id.iniciar);
 
-        mAuth = FirebaseAuth.getInstance();
 
         regis_trate.setOnClickListener(v -> validateRegister());
         iniciar.setOnClickListener(v ->{
@@ -52,21 +60,37 @@ public class Registro extends AppCompatActivity {
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || birthdate.isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
         } else {
-            registerUser(email, password);
+            registerUser(name,email,birthdate,password);
         }
     }
 
-    private void registerUser(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(Registro.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+    public void registerUser(String nombre,String email, String birthdate,String password) {
+        String url = "http://192.168.56.1:8888/android_mysql/insertar.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Registro.this, "USuario registrado correctamente", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Registro.this, MainActivity.class);
                         startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(Registro.this, "Registro fallido.", Toast.LENGTH_SHORT).show();
                     }
-                });
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Registro.this, "Error en el servidor", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("nombre", nombre);
+                params.put("email", email);
+                params.put("birthdate", birthdate);
+                params.put("pass", password);
+                return params;
+            }
+        };
+        Volley.newRequestQueue(this).add(stringRequest);
     }
 }

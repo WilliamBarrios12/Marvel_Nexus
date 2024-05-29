@@ -9,7 +9,7 @@
     android:gravity="center_vertical"
     android:padding="30dp"
     tools:context=".MainActivity"
-    android:background="@drawable/_65b93a6d92f5731252464e459b36aa9">
+    android:background="@drawable/fondo">
 
 
     <TextView
@@ -44,14 +44,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="445dp"
             android:orientation="vertical"
             android:padding="16dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/App.TextInputLayout"
                 android:layout_marginTop="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,16 +60,16 @@
                     android:layout_height="wrap_content"
                     android:hint="Correo Electronico"
                     android:inputType="textEmailAddress"
-                    android:textColorHighlight="@color/black"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                style="@style/App.TextInputLayout"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,46 +78,44 @@
                     android:layout_height="wrap_content"
                     android:hint="Contraseña"
                     android:inputType="textPassword"
-                    android:textColorHighlight="@color/black"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/iniciar_sesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="20dp"
+                android:layout_marginTop="40dp"
                 android:text="Iniciar sesión"
                 android:textColor="@color/white"
-                android:layout_marginTop="40dp"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="20dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¿No tienes cuenta?"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/registrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:text="Registrate"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
                     android:textColor="#0000FF"
-                    android:layout_marginLeft="10dp"/>
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
