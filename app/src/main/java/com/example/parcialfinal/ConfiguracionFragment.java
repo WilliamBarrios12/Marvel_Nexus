@@ -63,7 +63,7 @@ public class ConfiguracionFragment extends Fragment {
         });
 
         // Llamar a la API para obtener los datos del usuario
-        String url = "http://192.168.56.1:8888/android_mysql/credenciales.php?email=" + usuario;
+        String url = "http://192.168.1.9:8888/android_mysql/credenciales.php?email=" + usuario;
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
@@ -80,8 +80,7 @@ public class ConfiguracionFragment extends Fragment {
                                 textViewNombre.setText(data.getString("nombre"));
                                 textViewCorreo.setText(data.getString("email"));
                                 textViewdate.setText(data.getString("birthdate"));
-                                textViewContraseña.setText(data.getString("pass"));
-                            } else {
+                                textViewContraseña.setText(data.getString("id"));                            } else {
                                 // Manejar el caso de usuario no encontrado
                                 textViewNombre.setText("Usuario no encontrado");
                                 textViewCorreo.setText("");

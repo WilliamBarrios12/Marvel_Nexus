@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ConfiguracionFragment"
     android:orientation="vertical"
-   >
+    android:gravity="center_horizontal|center_vertical"
+    android:background="@drawable/_65b93a6d92f5731252464e459b36aa9">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/myCardView"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#D91B1818">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
         android:padding="16dp">
 
         <TextView
@@ -20,7 +32,9 @@
             android:text="Tus Credenciales"
             android:textStyle="bold"
             android:textSize="30dp"
-            android:padding="20dp"/>
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:gravity="center_horizontal"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -29,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nombre usuario: "
                 android:textSize="18sp"
+                android:textColor="@color/white"
                 android:padding="10dp"
                 android:layout_marginBottom="16dp"/>
 
@@ -38,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:text="Usuario"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -52,13 +68,15 @@
                 android:text="Correo usuario: "
                 android:textSize="18sp"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:layout_marginBottom="16dp"/>
             <TextView
                 android:layout_marginLeft="11dp"
                 android:id="@+id/textViewCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="correo"
+                android:text="Correo"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:padding="10dp"
                 android:layout_marginBottom="16dp"/>
@@ -73,14 +91,16 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha nacimiento: "
                 android:textSize="18sp"
+                android:textColor="@color/white"
                 android:padding="10dp"
                 android:layout_marginBottom="16dp"/>
             <TextView
                 android:id="@+id/textViewdate"
-                android:layout_width="377dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:text="Birthdate"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -88,11 +108,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nro ID usuario: "
+                android:text="ID usuario: "
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:padding="10dp"
                 android:layout_marginBottom="16dp"/>
@@ -101,8 +122,9 @@
                 android:id="@+id/textViewContraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="password"
+                android:text="ID"
                 android:textSize="18sp"
+                android:textColor="@color/white"
                 android:padding="10dp"
                 android:layout_marginBottom="16dp"/>
         </LinearLayout>
@@ -113,5 +135,5 @@
             android:layout_height="wrap_content"
             android:text="Salir"/>
     </LinearLayout>
-
-</FrameLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

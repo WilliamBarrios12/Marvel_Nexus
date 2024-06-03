@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,8 +35,7 @@ public class HomeFragment extends Fragment {
     RecyclerView rcv_personaje;
     List<SuperHeroe> listaPersonaje = new ArrayList<>();
 
-    Button btn_buscar;
-    EditText edt_buscar;
+    SearchView searchView;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,23 +43,23 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         rcv_personaje = view.findViewById(R.id.rcv_personaje);
-        btn_buscar = view.findViewById(R.id.btn_buscar);
-        edt_buscar = view.findViewById(R.id.edt_buscar);
+        searchView = view.findViewById(R.id.searchView);
+
 
         rcv_personaje.setLayoutManager(new LinearLayoutManager(getContext()));
         rcv_personaje.setAdapter(new SuperHeroeAdaptador(listaPersonaje));
 
-        btn_buscar.setOnClickListener(new View.OnClickListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                String heroe = edt_buscar.getText().toString();
-                if (heroe.isEmpty()) {
-                    listaPersonaje.clear();
-                    cargarInformacion(0);
-                } else {
-                    listaPersonaje.clear();
-                    cargarInformacionHeroe(heroe);
-                }
+            public boolean onQueryTextSubmit(String query) {
+                cargarInformacionHeroe(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
             }
         });
 

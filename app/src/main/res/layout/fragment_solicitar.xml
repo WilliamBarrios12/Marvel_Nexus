@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Solicitar Comics:"
         android:textSize="25sp"
+        android:layout_marginTop="20dp"
         />
     <Spinner
         android:layout_marginTop="30dp"
@@ -24,8 +25,9 @@
         android:id="@+id/btn_solicitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="solicitar"
-        android:layout_marginBottom="20dp"/>
+        android:text="Solicitar"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -43,22 +45,22 @@
                 android:layout_gravity="center"/>
             <TextView
                 android:id="@+id/txt_titulo"
-                android:text="titulo"
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txt_descripcion"
-                android:text="descripcion"
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txt_formato"
-                android:text="formato"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txt_numpag"
-                android:text="numero paginas"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

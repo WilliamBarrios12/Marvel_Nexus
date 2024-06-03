@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginUser(String email, String pass) {
 
-        String url = "http://192.168.56.1:8888/android_mysql/registro.php?email=" + email + "&pass=" + pass;
+        String url = "http://192.168.1.9:8888/android_mysql/registro.php?email=" + email + "&pass=" + pass;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

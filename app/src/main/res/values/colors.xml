@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="selected_color">#FFD700</color>
+    <color name="unselected_color">#FFD700</color>
+    <color name="ripple_color">#FFD700</color>
 
     <color name="cardBackground">#B31B1818</color>
         <!-- Color de fondo del TextInputLayout -->
