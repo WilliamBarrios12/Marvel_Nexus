@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="comics_array">
+        <item>rocket</item>
+        <item>Thor</item>
+        <item>Hulk</item>
+        <item>Ultron</item>
+        <item>Iron Man</item>
+        <item>Deadpool</item>
+        <item>Star-Lord</item>
+        <item>Venom</item>
+    </string-array>
+</resources>

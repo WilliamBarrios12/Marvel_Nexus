@@ -5,31 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SolicitarFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/seleccion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/material_dynamic_neutral_variant40"
-        android:padding="10dp">
-        <EditText
-            android:id="@+id/edt_buscar"
-            android:hint="Buscar Heroe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"/>
-        <Button
-            android:layout_marginLeft="10dp"
-            android:id="@+id/btn_buscar"
-            android:text="Buscar"
-            android:layout_width="200dp"
-            android:layout_height="50dp" />
-    </LinearLayout>
+        android:text="Solicitar Comics:"
+        android:textSize="25sp"
+        />
+    <Spinner
+        android:layout_marginTop="30dp"
+        android:id="@+id/comic_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_solicitar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="solicitar"
+        android:layout_marginBottom="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_personaje"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img_comic"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/txt_titulo"
+                android:text="titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_descripcion"
+                android:text="descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_formato"
+                android:text="formato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_numpag"
+                android:text="numero paginas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

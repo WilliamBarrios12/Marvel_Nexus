@@ -21,25 +21,97 @@
             android:textStyle="bold"
             android:textSize="30dp"
             android:padding="20dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre usuario: "
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:id="@+id/textViewUsuario"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textViewNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:padding="10dp"
+                android:text="Usuario"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo usuario: "
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+            <TextView
+                android:layout_marginLeft="11dp"
+                android:id="@+id/textViewCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="correo"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha nacimiento: "
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+            <TextView
+                android:id="@+id/textViewdate"
+                android:layout_width="377dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:padding="10dp"
+                android:text="Birthdate"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Usuario"
-            android:textSize="18sp"
-            android:padding="10dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nro ID usuario: "
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:id="@+id/textViewContraseña"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="password"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_cerrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Salir"/>
-
-
     </LinearLayout>
-
-
 
 </FrameLayout>

@@ -70,7 +70,7 @@ public class Registro extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(Registro.this, "USuario registrado correctamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Registro.this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Registro.this, MainActivity.class);
                         startActivity(intent);
                     }

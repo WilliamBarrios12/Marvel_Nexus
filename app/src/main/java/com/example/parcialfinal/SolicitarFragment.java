@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.parcialfinal.adaptador.SuperHeroeAdaptador;
 import com.example.parcialfinal.superhero.SuperHeroe;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,158 +42,97 @@ import java.util.List;
  */
 
 public class SolicitarFragment extends Fragment {
-    RecyclerView rcv_personaje;
-    List<SuperHeroe> listaPersonaje = new ArrayList<>();
 
-    Button btn_buscar;
-    EditText edt_buscar;
+    TextView select;
 
+    Button btn_solicitar;
+    Spinner comics;
+    TextView txtTitulo, txtDescripcion, txtFormato, txtNumPag;
+    ImageView imgComic;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_solicitar, container, false);
 
-        rcv_personaje = view.findViewById(R.id.rcv_personaje);
-        btn_buscar = view.findViewById(R.id.btn_buscar);
-        edt_buscar = view.findViewById(R.id.edt_buscar);
+        select = view.findViewById(R.id.seleccion);
+        comics = view.findViewById(R.id.comic_spinner);
+        btn_solicitar = view.findViewById(R.id.btn_solicitar);
+        imgComic = view.findViewById(R.id.img_comic);
+        txtTitulo = view.findViewById(R.id.txt_titulo);
+        txtDescripcion = view.findViewById(R.id.txt_descripcion);
+        txtFormato = view.findViewById(R.id.txt_formato);
+        txtNumPag = view.findViewById(R.id.txt_numpag);
 
-        rcv_personaje.setLayoutManager(new LinearLayoutManager(getContext()));
-        rcv_personaje.setAdapter(new SuperHeroeAdaptador(listaPersonaje));
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.comics_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        comics.setAdapter(adapter);
 
-        btn_buscar.setOnClickListener(new View.OnClickListener() {
+        btn_solicitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String heroe = edt_buscar.getText().toString();
-                if (heroe.isEmpty()) {
-                    listaPersonaje.clear();
-                    cargarInformacion(0);
-                } else {
-                    listaPersonaje.clear();
-                    cargarInformacionHeroe(heroe);
-                }
+                String selectedComic = comics.getSelectedItem().toString();
+                fetchComicData(selectedComic);
             }
         });
-
-        rcv_personaje.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == listaPersonaje.size() - 1) {
-                    // The end of the list is reached, load more characters
-                    cargarInformacion(listaPersonaje.size());
-                }
-            }
-        });
-
-        cargarInformacion(0);
 
         return view;
     }
 
-    public void cargarInformacion(int offset){
-        String url = "https://gateway.marvel.com/v1/public/characters?offset=" + offset + "&apikey=367e2ed94ccca4e5f05383be31b8e4b8&hash=77ef4109201726575c3eff2b4d1ef87e&ts=1";
+    private void fetchComicData(String title) {
+        String apiKey = "367e2ed94ccca4e5f05383be31b8e4b8";
+        String hash = "77ef4109201726575c3eff2b4d1ef87e";
+        String ts = "1";
+        String url = "https://gateway.marvel.com:443/v1/public/comics?title=" + title + "&apikey=" + apiKey + "&hash=" + hash + "&ts=" + ts;
 
-        StringRequest myRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    recibirRespuesta(new JSONObject(response));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Error en el servidor 1", Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Error en el servidor 2", Toast.LENGTH_LONG).show();
-            }
-        });
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
 
-        RequestQueue rq = Volley.newRequestQueue(getContext());
-        rq.add(myRequest);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        handleApiResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(stringRequest);
     }
 
-    public void recibirRespuesta(JSONObject respuesta) {
+    private void handleApiResponse(String response) {
         try {
-            JSONObject data = respuesta.getJSONObject("data");
-            JSONArray results = data.getJSONArray("results");
+            JSONObject jsonResponse = new JSONObject(response);
+            JSONArray results = jsonResponse.getJSONObject("data").getJSONArray("results");
 
-            for (int i = 0; i < results.length(); i++) {
-                JSONObject personaje = results.getJSONObject(i);
+            if (results.length() > 0) {
+                JSONObject comicData = results.getJSONObject(0);
+                String title = comicData.getString("title");
+                String description = comicData.getString("description");
+                String format = comicData.getString("format");
+                int pageCount = comicData.getInt("pageCount");
+                String thumbnailPath = comicData.getJSONObject("thumbnail").getString("path");
+                String thumbnailExtension = comicData.getJSONObject("thumbnail").getString("extension");
+                String imageUrl = thumbnailPath + "." + thumbnailExtension;
 
-                if (personaje.has("name") && personaje.has("description") && personaje.has("modified") && personaje.has("thumbnail")) {
-                    String nombre = personaje.getString("name");
-                    String descripcion = personaje.getString("description");
-                    String modified = personaje.getString("modified");
-                    JSONObject thumbnail = personaje.getJSONObject("thumbnail");
-                    String imagen = thumbnail.getString("path") + "." + thumbnail.getString("extension");
+                txtTitulo.setText(title);
+                txtDescripcion.setText(description);
+                txtFormato.setText(format);
+                txtNumPag.setText(String.valueOf(pageCount));
 
-                    SuperHeroe superheroe = new SuperHeroe(nombre, imagen, descripcion, modified);
-                    listaPersonaje.add(superheroe);
-                } else {
-                    Toast.makeText(getContext(), "Faltan algunos campos en la respuesta JSON", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            rcv_personaje.getAdapter().notifyDataSetChanged();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "Error en el servidor 3: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void cargarInformacionHeroe(String heroe){
-        String url = "https://gateway.marvel.com/v1/public/characters?name="+heroe+"&apikey=367e2ed94ccca4e5f05383be31b8e4b8&hash=77ef4109201726575c3eff2b4d1ef87e&ts=1";
-
-        StringRequest myRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    recibirRespuestaHeroe(new JSONObject(response));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Error en el servidor 1", Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Error en el servidor 2", Toast.LENGTH_LONG).show();
-            }
-        });
-        RequestQueue rq = Volley.newRequestQueue(getContext());
-        rq.add(myRequest);
-    }
-
-    public void recibirRespuestaHeroe(JSONObject respuesta) {
-
-        try {
-
-            JSONObject data = respuesta.getJSONObject("data");
-            JSONArray results = data.getJSONArray("results");
-
-            JSONObject personaje = results.getJSONObject(0);
-
-            if (personaje.has("name") && personaje.has("description") && personaje.has("modified") && personaje.has("thumbnail")) {
-                String nombre = personaje.getString("name");
-                String descripcion = personaje.getString("description");
-                String modified = personaje.getString("modified");
-                JSONObject thumbnail = personaje.getJSONObject("thumbnail");
-                String imagen = thumbnail.getString("path") + "." + thumbnail.getString("extension");
-
-                SuperHeroe superheroe = new SuperHeroe(nombre, imagen, descripcion, modified);
-                listaPersonaje.clear();
-                listaPersonaje.add(superheroe);
+                Picasso.get().load(imageUrl).into(imgComic);
             } else {
-                Toast.makeText(getContext(), "Faltan algunos campos en la respuesta JSON", Toast.LENGTH_LONG).show();
+                txtTitulo.setText("No results found.");
+                txtDescripcion.setText("");
+                txtFormato.setText("");
+                txtNumPag.setText("");
+                imgComic.setImageDrawable(null);
             }
-
-            rcv_personaje.setAdapter(new SuperHeroeAdaptador(listaPersonaje));
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "Nombre mal escrito " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }
