@@ -63,7 +63,7 @@ public class ConfiguracionFragment extends Fragment {
         });
 
         // Llamar a la API para obtener los datos del usuario
-        String url = "http://192.168.1.9:8888/android_mysql/credenciales.php?email=" + usuario;
+        String url = "http://192.168.1.6:8888/android_mysql/credenciales.php?email=" + usuario;
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 

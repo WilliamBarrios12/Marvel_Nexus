@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SolicitarFragment"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/seleccion"
@@ -15,24 +16,29 @@
         android:text="Solicitar Comics:"
         android:textSize="25sp"
         android:layout_marginTop="20dp"
+        android:textColor="@color/white"
         />
     <Spinner
         android:layout_marginTop="30dp"
         android:id="@+id/comic_spinner"
         android:layout_width="200dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:theme="@style/CustomSpinnerText"
+        />
     <Button
         android:id="@+id/btn_solicitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Solicitar"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/boton"
+        android:textColor="@color/white"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/black">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,22 +53,27 @@
                 android:id="@+id/txt_titulo"
                 android:text=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txt_descripcion"
                 android:text=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txt_formato"
                 android:text=""
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txt_numpag"
                 android:text=""
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

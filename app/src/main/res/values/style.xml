@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="CustomSpinnerText" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:textColor">@color/colorspinner</item>
+    </style>
+
     <style name="App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <!-- Aplica el color de fondo del TextInputLayout -->
+
         <item name="boxBackgroundColor">@color/textInputLayoutBackground</item>
 
-        <!-- Aplica el color del texto flotante del TextInputLayout -->
         <item name="hintTextColor">@color/textInputLayoutFloatingTextColor</item>
 
-        <!-- Aplica el color de los bordes del TextInputLayout -->
         <item name="boxStrokeColor">@color/textInputLayoutBoxStrokeColor</item>
 
-        <!-- Aplica el color del texto del TextInputLayout -->
         <item name="android:textColorHint">@color/textInputLayoutTextColor</item>
 
         <item name="shapeAppearanceOverlay">@style/TextInputLayoutShapeAppearance</item>
     </style>
     <style name="TextInputLayoutShapeAppearance">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">18dp</item> <!-- Ajusta este valor según sea necesario -->
+        <item name="cornerSize">18dp</item>
     </style>
 </resources>

@@ -65,7 +65,7 @@ public class Registro extends AppCompatActivity {
     }
 
     public void registerUser(String nombre,String email, String birthdate,String password) {
-        String url = "http://192.168.1.9:8888/android_mysql/insertar.php";
+        String url = "http://192.168.1.6:8888/android_mysql/insertar.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
